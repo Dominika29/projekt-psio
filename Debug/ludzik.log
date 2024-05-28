@@ -1,0 +1,29 @@
+﻿  ludzik.cpp
+D:\studia air\informatyka c++\PROJEKT\ludzik\ludzik.cpp(8,26): warning C4129: "s": nierozpoznany znak sekwencji ucieczki
+D:\studia air\informatyka c++\PROJEKT\ludzik\ludzik.cpp(8,26): warning C4129: "i": nierozpoznany znak sekwencji ucieczki
+D:\studia air\informatyka c++\PROJEKT\ludzik\ludzik.cpp(8,26): warning C4129: "P": nierozpoznany znak sekwencji ucieczki
+D:\studia air\informatyka c++\PROJEKT\ludzik\ludzik.cpp(8,26): warning C4129: "l": nierozpoznany znak sekwencji ucieczki
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QAE@PBDABVlocale@std@@@Z) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::String::~String(void)" (__imp_??1String@sf@@QAE@XZ) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: static class sf::Vector2<int> __cdecl sf::Mouse::getPosition(void)" (__imp_?getPosition@Mouse@sf@@SA?AV?$Vector2@H@2@XZ) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QAE@III@Z) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: bool __thiscall sf::WindowBase::isOpen(void)const " (__imp_?isOpen@WindowBase@sf@@QBE_NXZ) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: bool __thiscall sf::WindowBase::pollEvent(class sf::Event &)" (__imp_?pollEvent@WindowBase@sf@@QAE_NAAVEvent@2@@Z) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: virtual void __thiscall sf::Window::close(void)" (__imp_?close@Window@sf@@UAEXXZ) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: void __thiscall sf::Window::display(void)" (__imp_?display@Window@sf@@QAEXXZ) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QAE@EEEE@Z) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::Texture::Texture(void)" (__imp_??0Texture@sf@@QAE@XZ) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::Texture::~Texture(void)" (__imp_??1Texture@sf@@QAE@XZ) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: bool __thiscall sf::Texture::loadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class sf::Rect<int> const &)" (__imp_?loadFromFile@Texture@sf@@QAE_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV?$Rect@H@2@@Z) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: void __thiscall sf::RenderTarget::clear(class sf::Color const &)" (__imp_?clear@RenderTarget@sf@@QAEXABVColor@2@@Z) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: void __thiscall sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QAEXABVDrawable@2@ABVRenderStates@2@@Z) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::RenderWindow::RenderWindow(class sf::VideoMode,class sf::String const &,unsigned int,struct sf::ContextSettings const &)" (__imp_??0RenderWindow@sf@@QAE@VVideoMode@1@ABVString@1@IABUContextSettings@1@@Z) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: virtual __thiscall sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UAE@XZ) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::Sprite::Sprite(void)" (__imp_??0Sprite@sf@@QAE@XZ) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: void __thiscall sf::Sprite::setTexture(class sf::Texture const &,bool)" (__imp_?setTexture@Sprite@sf@@QAEXABVTexture@2@_N@Z) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: virtual __thiscall sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UAE@XZ) przywołany w funkcji _main
+ludzik.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: static class sf::RenderStates const sf::RenderStates::Default" (__imp_?Default@RenderStates@sf@@2V12@B) przywołany w funkcji _main
+D:\wow\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\lib\sfml-graphics.lib : warning LNK4272: wystąpił konflikt typu maszyny biblioteki „x64” z typem maszyny docelowej „x86”
+D:\wow\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\lib\sfml-window.lib : warning LNK4272: wystąpił konflikt typu maszyny biblioteki „x64” z typem maszyny docelowej „x86”
+D:\wow\SFML-2.6.1-windows-vc17-64-bit\SFML-2.6.1\lib\sfml-system.lib : warning LNK4272: wystąpił konflikt typu maszyny biblioteki „x64” z typem maszyny docelowej „x86”
+D:\studia air\informatyka c++\PROJEKT\ludzik\Debug\ludzik.exe : fatal error LNK1120: liczba nierozpoznanych elementów zewnętrznych: 20

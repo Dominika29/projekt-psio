@@ -1,0 +1,6 @@
+D:\studia air\informatyka c++\PROJEKT\ludzik\x64\Release\ludzik.exe
+C:\Users\Lenovo\OneDrive\Pulpit\8\x64\Release\ludzik.exe
+C:\Users\Lenovo\OneDrive\Pulpit\dominika_czerwinska_9\x64\Release\ludzik.exe
+C:\Users\Lenovo\OneDrive\Pulpit\projektPSIO\x64\Release\ludzik.exe
+D:\studia air\PSIO\projektPSIO\x64\Release\ludzik.exe
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\x64\Release\ludzik.exe

@@ -1,0 +1,6 @@
+﻿  ludzik.cpp
+D:\studia air\informatyka c++\PROJEKT\ludzik\ludzik.cpp(8,26): warning C4129: "s": nierozpoznany znak sekwencji ucieczki
+D:\studia air\informatyka c++\PROJEKT\ludzik\ludzik.cpp(8,26): warning C4129: "i": nierozpoznany znak sekwencji ucieczki
+D:\studia air\informatyka c++\PROJEKT\ludzik\ludzik.cpp(8,26): warning C4129: "P": nierozpoznany znak sekwencji ucieczki
+D:\studia air\informatyka c++\PROJEKT\ludzik\ludzik.cpp(8,26): warning C4129: "l": nierozpoznany znak sekwencji ucieczki
+  ludzik.vcxproj -> D:\studia air\informatyka c++\PROJEKT\ludzik\x64\Debug\ludzik.exe
