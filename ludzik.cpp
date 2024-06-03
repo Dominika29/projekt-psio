@@ -208,7 +208,7 @@ int main() {
         for (auto& enemy : enemies) {
             enemy.update(delta_time);
         }
-     //   hero.update(delta_time);
+       hero.update(delta_time);
 
         window.clear();
             window.draw(map);
