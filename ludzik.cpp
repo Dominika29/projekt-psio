@@ -31,7 +31,7 @@ void setupHero(Hero& hero, int fps) {
 		hero.add_walk_frame_right(sf::IntRect(128 * i, 0, 128, 128));
 	}
 
-	hero.setPosition(50, 470);
+	hero.setPosition(270, 470);
 }
 
 void setupEnemy(Enemy& enemy, sf::Texture& texture, const std::string& textureFile, float scale, sf::Vector2f position, const std::vector<sf::IntRect>& frames) {
@@ -97,7 +97,7 @@ int main() {
 	std::vector<sf::Texture> enemyTextures(4);
 	std::vector<Enemy> enemies(4, Enemy(animation_fps));
 
-	setupEnemy(enemies[0], enemyTextures[0], "enemy1_Idle.png", 1.5, sf::Vector2f(300, 150), {
+	setupEnemy(enemies[0], enemyTextures[0], "enemy1_Idle.png", 1.5, sf::Vector2f(300, 220), {
 		{0, 0, 128, 128},
 		{128, 0, 128, 128},
 		{256, 0, 128, 128},
@@ -107,7 +107,7 @@ int main() {
 		{768, 0, 128, 128}
 		});
 
-	setupEnemy(enemies[1], enemyTextures[1], "enemy2_Idle.png", 1.5, sf::Vector2f(500, 80), {
+	setupEnemy(enemies[1], enemyTextures[1], "enemy2_Idle.png", 1.5, sf::Vector2f(700, 20), {
 		{0, 0, 128, 128},
 		{128, 0, 128, 128},
 		{256, 0, 128, 128},
@@ -115,7 +115,7 @@ int main() {
 		{512, 0, 128, 128}
 		});
 
-	setupEnemy(enemies[2], enemyTextures[2], "enemy3_Idle.png", 2, sf::Vector2f(620, 250), {
+	setupEnemy(enemies[2], enemyTextures[2], "enemy3_Idle.png", 2, sf::Vector2f(500, 190), {
 		{0, 0, 96, 96},
 		{96, 0, 96, 96},
 		{192, 0, 96, 96},
@@ -144,7 +144,7 @@ int main() {
 	sf::Texture questTexture;
 	loadTexture(questTexture, "quest.png");
 	sf::Sprite questSprite(questTexture);
-	questSprite.setPosition(370, 180);
+	questSprite.setPosition(400, 250);
 	questSprite.setScale(0.4, 0.4);
 
 	sf::Texture quest2Texture;
