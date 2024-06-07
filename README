@@ -1,1 +1,40 @@
-Downloaded from: https://ansimuz.itch.io/magic-cliffs-environment
+Projekt gra
+Autor: Dominika Czerwińska i Bartosz Cywiński
+Projekt został uwtorzony w Visiual Studio 2022 z wykorzystaniem biblioteki SFML. Instrukcja podpięcia dodatkowych
+bibliotek zawartych w plikach projektu znajduje się poniżej.
+
+Rozgrywka:
+W grze bohater ma za zadanie wykonać 3 questy. Pierwszy z nich to prosta układanka. Należy zebrać kamienie i ułożyć je odpowiednio na rzece w wyznaczonych miejscach.
+Drugi quest polega na walce z przeciwnikiem. Trzeci quest ...
+Rozgrywka kończy się w dwóch przypadkach:
+-ukończeniu pomyślnie wczestkich questów
+-śmierci bohatera na którymś z questów.
+
+Sterowanie:
+W grze bohaterem steruje się za pomocą przycisków strzałek, odpowiednio w questach:
+1- spacja jako podnoszenie i upuszczanie kamieni
+2-
+3-
+
+Struktura:
+Program posiada jedną główną pętlę oraz podział na klasy Hero i Enemy, dziedziczące po klasie Sprite. W głównej pętli programu 
+tworzą się "podokna" do poszczególnych questów.
+
+Dodatkowe biblioteki:
+Aby program działał poprawnie należy umieścić w pliku solucji dodatkowe biblioteki SFML. W programie Visiual Studio 2022
+należy:
+1) Otworzyć właściwości projektu i w zakładce "C/C++"/General w punkcie "Additional Include Directories" nacisnąc przycisk 
+"Edit" oraz dodać (Ctrl-insert) następującą linię "$(SolutionDir)/../External_Libraries/SFML/include".
+
+2) W zakładce "Linker"/"General" w punkcie "Additional Include Directories" nacisnąc przycisk 
+"Edit" oraz dodać (Ctrl-insert) następującą linię "$(SolutionDir)/../External_Libraries/SFML/lib"
+
+3) W zakładce "Linker"/"Input" w punkcie "Additional Dependencies" nacisnąć przycisk "Edit" oraz dodać:
+"
+sfml-main-d.lib
+sfml-graphics-d.lib
+sfml-window-d.lib
+sfml-system-d.lib
+sfml-audio-d.lib
+"
+Po zastosowaniu powyższej instrukcji program powinien uruchomić się bezbłędów w trybie graficznym.
