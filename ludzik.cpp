@@ -147,6 +147,14 @@ int main() {
 	questSprite.setPosition(370, 180);
 	questSprite.setScale(0.4, 0.4);
 
+	sf::Texture quest2Texture;
+	loadTexture(quest2Texture, "quest2.png");
+	sf::Sprite quest2Sprite(quest2Texture);
+	quest2Sprite.setPosition(900, 250);
+	quest2Sprite.setScale(0.4, 0.4);
+	bool quest1 = true;
+	bool quest2 = false;
+
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -278,6 +286,16 @@ int main() {
 								if (subEvent.type == sf::Event::Closed) {
 									subWindow.close();
 								}
+								if (subEvent.type == sf::Event::MouseButtonPressed) {
+									if (subEvent.mouseButton.button == sf::Mouse::Left) {
+										sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
+										if (end1Sprite.getGlobalBounds().contains(mousePosition)) {
+											subWindow.close();
+
+										}
+									}
+								}
+
 								//stone 1
 								if (subHero.getPosition().x >= 200 && subHero.getPosition().x <= 220 && subHero.getPosition().y >= 130 && subHero.getPosition().y <= 150 && check == true) {
 
@@ -338,7 +356,7 @@ int main() {
 									}
 								}
 								//stone 4 - 600,300
-								if (subHero.getPosition().x >=530 && subHero.getPosition().x <= 550 && subHero.getPosition().y >= 170 && subHero.getPosition().y <= 190 && check4 == true) {
+								if (subHero.getPosition().x >= 530 && subHero.getPosition().x <= 550 && subHero.getPosition().y >= 170 && subHero.getPosition().y <= 190 && check4 == true) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stoneVisible4 = false;
@@ -416,8 +434,10 @@ int main() {
 
 								if (it == 14) {
 									end1 = true;
+									quest2 = true;
+									quest1 = false;
 								}
-								
+
 							}
 
 							float delta_time = clock.restart().asSeconds();
@@ -466,13 +486,14 @@ int main() {
 							if (end1) {
 								subWindow.draw(end1Sprite);
 							}
-							
+
 							subWindow.display();
 						}
 					}
 				}
 			}
 		}
+
 
 		float delta_time = clock.restart().asSeconds();
 		float hero_speed = 0.2;
@@ -495,7 +516,13 @@ int main() {
 		for (const auto& enemy : enemies) {
 			window.draw(enemy);
 		}
-		window.draw(questSprite);
+		if (quest1) {
+			window.draw(questSprite);
+		}
+		if (quest2) {
+			window.draw(quest2Sprite);
+		}
+
 		window.draw(hero);
 		window.display();
 	}
