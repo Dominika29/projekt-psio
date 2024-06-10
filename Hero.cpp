@@ -1,15 +1,16 @@
+// Hero.cpp
 #include "Hero.h"
-#include <SFML/Graphics.hpp>
-#include <iostream>
 
-Hero::Hero(int fps) : animation_fps(fps), current_frame(0), elapsed_time(0.0f), is_moving(false), is_moving_left(false) {
+Hero::Hero(int fps) : animation_fps(fps), current_frame(0), elapsed_time(0.0f), is_moving(false), is_moving_left(false), attacking(false) {
     time_per_frame = 1.0f / static_cast<float>(animation_fps);
     current_frames = &idle_frames;
+  
+   
 }
 
 void Hero::setIdleTexture(const sf::Texture& texture) {
     idle_texture = texture;
-    if (!is_moving) {
+    if (!is_moving && !attacking) {
         setTexture(idle_texture);
     }
 }
@@ -28,6 +29,10 @@ void Hero::setWalkTextureRight(const sf::Texture& texture) {
     }
 }
 
+void Hero::setAttackTexture(const sf::Texture& texture) {
+    attackTexture = texture;
+}
+
 void Hero::add_idle_frame(const sf::IntRect& rect) {
     idle_frames.push_back(rect);
 }
@@ -40,6 +45,10 @@ void Hero::add_walk_frame_right(const sf::IntRect& rect) {
     walk_frames_right.push_back(rect);
 }
 
+void Hero::add_attack_frame(const sf::IntRect& rect) {
+    attack_frames.push_back(rect);
+}
+
 void Hero::setMoving(bool moving, bool movingLeft) {
     if (is_moving != moving || is_moving_left != movingLeft) {
         is_moving = moving;
@@ -47,6 +56,7 @@ void Hero::setMoving(bool moving, bool movingLeft) {
         current_frame = 0;
         elapsed_time = 0.0f;
         if (is_moving) {
+            attacking = false;
             current_frames = is_moving_left ? &walk_frames_left : &walk_frames_right;
             setTexture(is_moving_left ? walk_texture_left : walk_texture_right);
         }
@@ -55,6 +65,21 @@ void Hero::setMoving(bool moving, bool movingLeft) {
             setTexture(idle_texture);
         }
     }
+}
+
+void Hero::setAttacking(bool isAttacking) {
+    attacking = isAttacking;
+    is_moving = false;
+    current_frame = 0;
+    elapsed_time = 0;
+    if (attacking) {
+        current_frames = &attack_frames;
+        setTexture(attackTexture);
+    }
+}
+
+void Hero::attack() {
+    setAttacking(true);
 }
 
 void Hero::update(float delta_time) {
@@ -66,5 +91,24 @@ void Hero::update(float delta_time) {
         elapsed_time -= time_per_frame;
         current_frame = (current_frame + 1) % current_frames->size();
         setTextureRect((*current_frames)[current_frame]);
+        if (attacking && current_frame == current_frames->size() - 1) {
+            setAttacking(false); 
+        }
     }
+
+    hpBar.setSize(sf::Vector2f(100 * (hp / 100.0f), 10));
+    hpBar.setPosition(getPosition().x, getPosition().y - 20);
+}
+
+void Hero::decreaseHP(float amount) {
+    hp -= amount;
+    if (hp < 0) hp = 0;
+}
+
+float Hero::getHP() const {
+    return hp;
+}
+
+void Hero::drawHP(sf::RenderWindow& window) {
+    window.draw(hpBar);
 }
