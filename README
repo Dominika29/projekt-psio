@@ -11,10 +11,10 @@ Rozgrywka kończy się w dwóch przypadkach:
 -śmierci bohatera na którymś z questów.
 
 Sterowanie:
-W grze bohaterem steruje się za pomocą przycisków strzałek, odpowiednio w questach:
+W grze bohaterem steruje się za pomocą przycisków strzałek oraz odpowiednio w questach:
 1- spacja jako podnoszenie i upuszczanie kamieni
-2-
-3-
+2-prawy przycisk myszy jako atak
+
 
 Struktura:
 Program posiada jedną główną pętlę oraz podział na klasy Hero i Enemy, dziedziczące po klasie Sprite. W głównej pętli programu 
