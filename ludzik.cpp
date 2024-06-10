@@ -514,7 +514,7 @@ int main() {
 							}
 
 							float delta_time = clock.restart().asSeconds();
-							float hero_speed = 0.2;
+							float hero_speed = 0.02;
 
 							sf::Vector2f movement = handleMovement(subHero, hero_speed);
 							sf::Vector2f hero_pos = subHero.getPosition();
@@ -640,7 +640,7 @@ int main() {
 							}
 
 							float delta_time = subClock.restart().asSeconds();
-							float hero_speed = 0.1f;
+							float hero_speed = 0.02f;
 
 							sf::Vector2f movement = handleMovement(subHero, hero_speed);
 							sf::Vector2f hero_pos = subHero.getPosition();
@@ -800,7 +800,7 @@ int main() {
 
 
 
-							float hero_speed = 0.2;
+							float hero_speed = 0.02f;
 
 							sf::Vector2f movement = handleMovement(subHero, hero_speed);
 							sf::Vector2f hero_pos = subHero.getPosition();
@@ -856,7 +856,7 @@ int main() {
 
 
 		float delta_time = clock.restart().asSeconds();
-		float hero_speed = 0.2;
+		float hero_speed = 0.02f;
 
 		sf::Vector2f movement = handleMovement(hero, hero_speed);
 		sf::Vector2f hero_pos = hero.getPosition();
