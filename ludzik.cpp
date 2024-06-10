@@ -3,6 +3,7 @@
 #include <vector>
 #include "Enemy.h"
 #include "Hero.h"
+#include "Projectile.h"
 
 void loadTexture(sf::Texture& texture, const std::string& filename) {
 	if (!texture.loadFromFile(filename)) {
@@ -43,9 +44,6 @@ void setupEnemy(Enemy& enemy, sf::Texture& idletexture, const std::string& textu
 	enemy.setTexture(idletexture);
 	enemy.setScale(scale, scale);
 	enemy.setPosition(position);
-	sf::Texture attack_texture;
-	loadTexture(attack_texture, "Shot.png");
-	enemy.setAttackTexture(attack_texture);
 
 	for (const auto& frame : frames) {
 		enemy.add_animation_frame(frame);
@@ -161,10 +159,31 @@ int main() {
 	quest2Sprite.setPosition(900, 250);
 	quest2Sprite.setScale(0.3, 0.3);
 
+	sf::Texture projectileTexture;
+	loadTexture(projectileTexture, "projectile.png");
+	std::vector<Projectile> projectiles;
+
+	sf::Clock projectileClock;
+	float fireInterval = 2.0f;
+
+	sf::RectangleShape healthBarBackground(sf::Vector2f(200, 20));
+	healthBarBackground.setFillColor(sf::Color(50, 50, 50));
+	healthBarBackground.setPosition(10, 570);
+
+	sf::RectangleShape healthBar(sf::Vector2f(200, 20));
+	healthBar.setFillColor(sf::Color(100, 250, 50));
+	healthBar.setPosition(10, 570);
+	//
+	sf::RectangleShape healthBarEnemyBackground(sf::Vector2f(200, 20));
+	healthBarEnemyBackground.setFillColor(sf::Color(50, 50, 50));
+	healthBarEnemyBackground.setPosition(850, 30);
+
+	sf::RectangleShape healthBarEnemy(sf::Vector2f(200, 20));
+	healthBarEnemy.setFillColor(sf::Color::Yellow);
+	healthBarEnemy.setPosition(850, 30);
+
 	bool quest1 = true;
 	bool quest2 = false;
-
-	enemies[3].shoot(); 
 
 	bool moveLeft = false, moveRight = false;
 
@@ -520,31 +539,32 @@ int main() {
 					setupHero(subHero, animation_fps);
 					sf::FloatRect windowBounds(0, 0, subWindow.getSize().x, subWindow.getSize().y);
 
+					Enemy subEnemy(animation_fps);
+					setupEnemy(subEnemy, enemyTextures[3], "enemy4_Idle.png", 2, sf::Vector2f(800, 210), {
+						{0, 0, 128, 128},
+						{128, 0, 128, 128},
+						{256, 0, 128, 128},
+						{384, 0, 128, 128},
+						{512, 0, 128, 128}
+						});
+
+					subEnemy.setMovement(200, 100, 1);
+					subEnemy.startMovement(sf::Vector2f(800, 210));
+					
+					sf::Clock subClock;
+
 					sf::Texture end2Texture;
 					loadTexture(end2Texture, "endquest2.png");
 					sf::Sprite end2Sprite(end2Texture);
 					end2Sprite.setPosition(270, 130);
 
-					sf::RectangleShape hpBar;
-					hpBar.setSize(sf::Vector2f(201, 40));
-					hpBar.setFillColor(sf::Color::Green);
-					hpBar.setPosition(400, 20);
+					sf::Texture fail2Texture;
+					loadTexture(fail2Texture, "failquest2.png");
+					sf::Sprite fail2Sprite(fail2Texture);
+					fail2Sprite.setPosition(270, 130);
 
-					sf::RectangleShape hpBarEnemy;
-					hpBarEnemy.setSize(sf::Vector2f(201, 40));
-					hpBarEnemy.setFillColor(sf::Color::Yellow);
-					hpBarEnemy.setPosition(850, 180);
-
-					sf::Texture Charge;
-					loadTexture(Charge, "Charge.png");
-					sf::Vector2u frameSize(64, 64);
-					int numFrames = 8;
-					std::vector<sf::IntRect> frames;
-					for (int i = 0; i < numFrames; ++i) {
-						sf::IntRect frame(i * frameSize.x, 0, frameSize.x, frameSize.y);
-						frames.push_back(frame);
-					}    
 					
+
 
 					bool enemy_dead = false;
 					bool end2 = false;
@@ -569,29 +589,18 @@ int main() {
 									}
 								}
 							}
-							if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-								subHero.attack();
-							}
 							sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
-							if (subHero.getPosition().x >= 800 && subHero.getPosition().x <= 1020 && subHero.getPosition().y >= 250 && subHero.getPosition().y <= 450 && subEvent.mouseButton.button == sf::Mouse::Right) {
-								enemy_dead = true;
-								hpBarEnemy.setFillColor(sf::Color::Red);
+							
+							sf::FloatRect subHeroBounds = subHero.getGlobalBounds();
+							sf::FloatRect subEnemyBounds = subEnemy.getGlobalBounds();
+							if (subHeroBounds.intersects(subEnemyBounds) && subEvent.mouseButton.button == sf::Mouse::Right) {
+								healthBarEnemy.setFillColor(sf::Color::Red);
 								end2 = true;
 							}
 						}
 
-						int currentFrame = 0;
-						float frameTime = 0.1f;
-						float elapsedTime = 0.0f;
-						if (elapsedTime >= frameTime) {
-							elapsedTime -= frameTime;
-							currentFrame = (currentFrame + 1) % numFrames;
-						}
-						sf::IntRect frameToDisplay = frames[currentFrame];
-						sf::Sprite sprite(Charge, frameToDisplay);
-
-						float delta_time = clock.restart().asSeconds();
-						float hero_speed = 0.2;
+						float delta_time = subClock.restart().asSeconds();
+						float hero_speed = 0.1f;
 
 						sf::Vector2f movement = handleMovement(subHero, hero_speed);
 						sf::Vector2f hero_pos = subHero.getPosition();
@@ -600,22 +609,57 @@ int main() {
 						checkBounds(movement, hero_pos, windowBounds, hero_bounds);
 						subHero.move(movement);
 						subHero.update(delta_time);
-						
 
-						for (Enemy& enemy : enemies) {
-							enemy.update(delta_time);
+						subEnemy.update(delta_time);
+
+						if (projectileClock.getElapsedTime().asSeconds() >= fireInterval) {
+							sf::Vector2f enemy_center = subEnemy.getPosition() + sf::Vector2f(subEnemy.getGlobalBounds().width / 2, subEnemy.getGlobalBounds().height / 2);
+							projectiles.push_back(Projectile(projectileTexture, enemy_center, 300.0f));
+							projectileClock.restart();
+						}
+
+						for (auto it = projectiles.begin(); it != projectiles.end();) {
+							it->update(delta_time);
+
+							if (it->getGlobalBounds().intersects(hero_bounds)) {
+								std::cout << "hit" << std::endl;
+								subHero.decreaseHealth(20);
+								it = projectiles.erase(it);
+							}
+							else if (it->isOffScreen(windowBounds)) {
+								it = projectiles.erase(it);
+							}
+							else {
+								++it;
+							}
+						}
 						
+						float healthPercent = static_cast<float>(subHero.getHealth()) / 100.0f;
+						healthBar.setSize(sf::Vector2f(200 * healthPercent, 20));
+
+						if (subHero.getHealth() <= 0) {
+							subWindow.clear();
+							subWindow.draw(fail2Sprite);
+							subWindow.display();
+
+							while (true) {
+								if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+									subWindow.close();
+									break;
+								}
+							}
 						}
 						subWindow.clear();
 						subWindow.draw(map);
-						subWindow.draw(hpBar);
-						subWindow.draw(sprite);
-						subWindow.draw(hpBarEnemy);
+						subWindow.draw(healthBarEnemyBackground);
+						subWindow.draw(healthBarEnemy);
+						subWindow.draw(healthBarBackground);
+						subWindow.draw(healthBar);
 						subWindow.draw(subHero);
-						if(enemy_dead==false)
-						{
-							subWindow.draw(enemies[3]);}
-						
+						subWindow.draw(subEnemy);
+						for (const auto& projectile : projectiles) {
+							subWindow.draw(projectile);
+						}
 						if (end2) 
 						{
 							subWindow.draw(end2Sprite);
@@ -631,7 +675,7 @@ int main() {
 
 
 		float delta_time = clock.restart().asSeconds();
-		float hero_speed = 0.2;
+		float hero_speed = 0.1f;
 
 		sf::Vector2f movement = handleMovement(hero, hero_speed);
 		sf::Vector2f hero_pos = hero.getPosition();

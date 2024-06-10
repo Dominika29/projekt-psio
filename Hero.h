@@ -1,4 +1,3 @@
-// Hero.h
 #ifndef HERO_H
 #define HERO_H
 
@@ -20,9 +19,8 @@ public:
     void setAttacking(bool isAttacking);
     void attack();
     void update(float delta_time);
-    void decreaseHP(float amount);
-    float getHP() const;
-    void drawHP(sf::RenderWindow& window);
+    void decreaseHealth(int amount);
+    int getHealth() const;
 
 private:
     sf::Texture idle_texture;
@@ -41,8 +39,7 @@ private:
     bool is_moving;
     bool is_moving_left;
     bool attacking;
-    float hp;
-    sf::RectangleShape hpBar;
+    int health = 100;
 };
 
 #endif // HERO_H
