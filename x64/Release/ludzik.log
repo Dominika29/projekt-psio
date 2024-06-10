@@ -1,67 +1,87 @@
 ﻿  ludzik.cpp
 D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(156,28): warning C4305: "argument": obcięcie z "double" do "float"
 D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(156,23): warning C4305: "argument": obcięcie z "double" do "float"
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(162,29): warning C4305: "argument": obcięcie z "double" do "float"
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(162,24): warning C4305: "argument": obcięcie z "double" do "float"
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,82): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,82): warning C4244:         with
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,82): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,82): warning C4244:             T=unsigned int
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,82): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,82): warning C4244:         and
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,82): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,82): warning C4244:             T=float
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,82): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,59): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,59): warning C4244:         with
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,59): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,59): warning C4244:             T=unsigned int
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,59): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,59): warning C4244:         and
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,59): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,59): warning C4244:             T=float
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(190,59): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(464,25): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,81): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,81): warning C4244:         with
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,81): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,81): warning C4244:             T=unsigned int
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,81): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,81): warning C4244:         and
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,81): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,81): warning C4244:             T=float
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,81): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,58): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,58): warning C4244:         with
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,58): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,58): warning C4244:             T=unsigned int
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,58): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,58): warning C4244:         and
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,58): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,58): warning C4244:             T=float
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(521,58): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(594,24): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(634,20): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,73): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,73): warning C4244:         with
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,73): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,73): warning C4244:             T=unsigned int
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,73): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,73): warning C4244:         and
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,73): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,73): warning C4244:             T=float
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,73): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,53): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,53): warning C4244:         with
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,53): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,53): warning C4244:             T=unsigned int
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,53): warning C4244:         ]
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,53): warning C4244:         and
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,53): warning C4244:         [
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,53): warning C4244:             T=float
-D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(639,53): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(163,29): warning C4305: "argument": obcięcie z "double" do "float"
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(163,24): warning C4305: "argument": obcięcie z "double" do "float"
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(170,29): warning C4305: "argument": obcięcie z "double" do "float"
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(170,24): warning C4305: "argument": obcięcie z "double" do "float"
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,82): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,82): warning C4244:         with
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,82): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,82): warning C4244:             T=unsigned int
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,82): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,82): warning C4244:         and
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,82): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,82): warning C4244:             T=float
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,82): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,59): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,59): warning C4244:         with
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,59): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,59): warning C4244:             T=unsigned int
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,59): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,59): warning C4244:         and
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,59): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,59): warning C4244:             T=float
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(236,59): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(517,25): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,82): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,82): warning C4244:         with
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,82): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,82): warning C4244:             T=unsigned int
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,82): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,82): warning C4244:         and
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,82): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,82): warning C4244:             T=float
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,82): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,59): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,59): warning C4244:         with
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,59): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,59): warning C4244:             T=unsigned int
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,59): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,59): warning C4244:         and
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,59): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,59): warning C4244:             T=float
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(575,59): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,82): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,82): warning C4244:         with
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,82): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,82): warning C4244:             T=unsigned int
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,82): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,82): warning C4244:         and
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,82): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,82): warning C4244:             T=float
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,82): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,59): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,59): warning C4244:         with
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,59): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,59): warning C4244:             T=unsigned int
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,59): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,59): warning C4244:         and
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,59): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,59): warning C4244:             T=float
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(725,59): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(803,25): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(859,20): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,73): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,73): warning C4244:         with
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,73): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,73): warning C4244:             T=unsigned int
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,73): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,73): warning C4244:         and
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,73): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,73): warning C4244:             T=float
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,73): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,53): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,53): warning C4244:         with
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,53): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,53): warning C4244:             T=unsigned int
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,53): warning C4244:         ]
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,53): warning C4244:         and
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,53): warning C4244:         [
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,53): warning C4244:             T=float
+D:\studia air\PSIO\projektPSIO\Projekt-Psio\ludzik.cpp(864,53): warning C4244:         ]
   Trwa generowanie kodu
-  1 of 274 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  1 of 439 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu

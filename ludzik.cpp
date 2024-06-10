@@ -1,8 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
+#include <random> 
+#include <thread>
+#include <chrono>
 #include "Enemy.h"
 #include "Hero.h"
+#include "Bullet.h"
+#include "Projectile.h"
+
+
+// functions 
 
 void loadTexture(sf::Texture& texture, const std::string& filename) {
 	if (!texture.loadFromFile(filename)) {
@@ -43,9 +51,6 @@ void setupEnemy(Enemy& enemy, sf::Texture& idletexture, const std::string& textu
 	enemy.setTexture(idletexture);
 	enemy.setScale(scale, scale);
 	enemy.setPosition(position);
-	sf::Texture attack_texture;
-	loadTexture(attack_texture, "Shot.png");
-	enemy.setAttackTexture(attack_texture);
 
 	for (const auto& frame : frames) {
 		enemy.add_animation_frame(frame);
@@ -91,99 +96,140 @@ void checkBounds(sf::Vector2f& movement, const sf::Vector2f& position, const sf:
 	}
 }
 
+sf::Vector2f getRandomPosition(float x, float y)
+{
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_real_distribution<float> distr(x, y);
 
+	float random_number1 = distr(gen);
+	float random_number2 = distr(gen);
+
+	return sf::Vector2f(random_number1, random_number2);
+}
 
 int main() {
+
+	//main window
+
 	sf::RenderWindow window(sf::VideoMode(1100, 600), "Game project v1");
 	sf::Clock clock;
 
 	int animation_fps = 10;
 	Hero hero(animation_fps);
-	sf::Texture heroIdleTexture, heroWalkTextureLeft, heroWalkTextureRight, heroAttackTexture; 
-	setupHero(hero, animation_fps); 
+	sf::Texture heroIdleTexture, heroWalkTextureLeft, heroWalkTextureRight, heroAttackTexture;
+	setupHero(hero, animation_fps);
 
 	std::vector<sf::Texture> enemyTextures(4);
 	std::vector<Enemy> enemies(4, Enemy(animation_fps));
 
-	setupEnemy(enemies[0], enemyTextures[0], "enemy1_Idle.png", 1.5, sf::Vector2f(300, 200), {
-		{0, 0, 128, 128},
-		{128, 0, 128, 128},
-		{256, 0, 128, 128},
-		{384, 0, 128, 128},
-		{512, 0, 128, 128},
-		{640, 0, 128, 128},
-		{768, 0, 128, 128}
+	setupEnemy(enemies[0], enemyTextures[0], "enemy1_Idle.png", 1.5, sf::Vector2f(300, 200), { {0, 0, 128, 128},{128, 0, 128, 128},{256, 0, 128, 128},{384, 0, 128, 128},{512, 0, 128, 128},{640, 0, 128, 128},{768, 0, 128, 128}
 		});
 
-	setupEnemy(enemies[1], enemyTextures[1], "enemy2_Idle.png", 1.5, sf::Vector2f(670, 30), {
-		{0, 0, 128, 128},
-		{128, 0, 128, 128},
-		{256, 0, 128, 128},
-		{384, 0, 128, 128},
-		{512, 0, 128, 128}
+	setupEnemy(enemies[1], enemyTextures[1], "enemy2_Idle.png", 1.5, sf::Vector2f(670, 30), { {0, 0, 128, 128},{128, 0, 128, 128},{256, 0, 128, 128},{384, 0, 128, 128},{512, 0, 128, 128}
 		});
 
-	setupEnemy(enemies[2], enemyTextures[2], "enemy3_Idle.png", 2, sf::Vector2f(520, 200), {
-		{0, 0, 96, 96},
-		{96, 0, 96, 96},
-		{192, 0, 96, 96},
-		{288, 0, 96, 96},
-		{384, 0, 96, 96}
+	setupEnemy(enemies[2], enemyTextures[2], "enemy3_Idle.png", 2, sf::Vector2f(520, 200), { {0, 0, 96, 96},{96, 0, 96, 96},{192, 0, 96, 96},{288, 0, 96, 96},{384, 0, 96, 96}
 		});
 
-	setupEnemy(enemies[3], enemyTextures[3], "enemy4_Idle.png", 2, sf::Vector2f(800, 210), {
-		{0, 0, 128, 128},
-		{128, 0, 128, 128},
-		{256, 0, 128, 128},
-		{384, 0, 128, 128},
-		{512, 0, 128, 128}
+	setupEnemy(enemies[3], enemyTextures[3], "enemy4_Idle.png", 2, sf::Vector2f(800, 210), { {0, 0, 128, 128},{128, 0, 128, 128},{256, 0, 128, 128},{384, 0, 128, 128},{512, 0, 128, 128}
 		});
 
+	//main textures
+	// main map
 	sf::Texture map_texture;
 	loadTexture(map_texture, "mapka0.png");
 	sf::Sprite map(map_texture);
 	map.setScale(0.5, 0.5);
 
+	//quest1 map
 	sf::Texture map1_texture;
 	loadTexture(map1_texture, "mapka1.png");
 	sf::Sprite map1(map1_texture);
 	map1.setScale(1, 1);
 
+	//quest 1 
 	sf::Texture questTexture;
 	loadTexture(questTexture, "quest.png");
 	sf::Sprite questSprite(questTexture);
-	questSprite.setPosition(370, 200);
+	questSprite.setPosition(370, 220);
 	questSprite.setScale(0.3, 0.3);
 
+	//quest 2
 	sf::Texture quest2Texture;
 	loadTexture(quest2Texture, "quest2.png");
 	sf::Sprite quest2Sprite(quest2Texture);
 	quest2Sprite.setPosition(900, 250);
 	quest2Sprite.setScale(0.3, 0.3);
 
+	// quest 3
+	sf::Texture quest3Texture;
+	loadTexture(quest3Texture, "quest3.png");
+	sf::Sprite quest3Sprite(quest3Texture);
+	quest3Sprite.setPosition(750, 90);
+	quest3Sprite.setScale(0.3, 0.3);
+
+	// end game
+	sf::Texture end_game;
+	loadTexture(end_game, "end_game.png");
+	sf::Sprite endgame(end_game);
+	endgame.setPosition(250, 80);
+
+	sf::Texture projectileTexture;
+	loadTexture(projectileTexture, "projectile.png");
+	std::vector<Projectile> projectiles;
+
+	sf::RectangleShape healthBarBackground(sf::Vector2f(200, 20));
+	healthBarBackground.setFillColor(sf::Color(50, 50, 50));
+	healthBarBackground.setPosition(10, 570);
+
+	sf::RectangleShape healthBar(sf::Vector2f(200, 20));
+	healthBar.setFillColor(sf::Color(100, 250, 50));
+	healthBar.setPosition(10, 570);
+	//
+	sf::RectangleShape healthBarEnemyBackground(sf::Vector2f(200, 20));
+	healthBarEnemyBackground.setFillColor(sf::Color(50, 50, 50));
+	healthBarEnemyBackground.setPosition(850, 30);
+
+	sf::RectangleShape healthBarEnemy(sf::Vector2f(200, 20));
+	healthBarEnemy.setFillColor(sf::Color::Yellow);
+	healthBarEnemy.setPosition(850, 30);
+
+	sf::Clock projectileClock;
+	float fireInterval = 2.0f;
+
 	bool quest1 = true;
 	bool quest2 = false;
+	bool quest3 = false;
+	bool _endgame = false;
 
-	enemies[3].shoot(); 
 
-	bool moveLeft = false, moveRight = false;
+	//main window
 
 	while (window.isOpen()) {
+
 		sf::Event event;
+
 		while (window.pollEvent(event)) {
+			//closing 
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
+
+
 			if (event.type == sf::Event::MouseButtonPressed) {
 
-				if (event.mouseButton.button == sf::Mouse::Right) { 
-					hero.attack(); 
-				} 
+				//hero attacking on right click
+				if (event.mouseButton.button == sf::Mouse::Right) {
+					hero.attack();
+				}
 
+				//open quest on left click
 				if (event.mouseButton.button == sf::Mouse::Left) {
 					sf::Vector2f mousePosition = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
 					if (questSprite.getGlobalBounds().contains(mousePosition)) {
 
+						//quest 1 subWindow
 						sf::RenderWindow subWindow(sf::VideoMode(950, 650), "Quest Window");
 						Hero subHero(10);
 						setupHero(subHero, animation_fps);
@@ -203,8 +249,11 @@ int main() {
 						bool check6 = true;
 						bool stoneVisible7 = true;
 						bool check7 = true;
+
+
 						int it = 0;
 						bool end1 = false;
+
 						//stone 1
 						sf::Texture questsquareTexture;
 						loadTexture(questsquareTexture, "quest1_square.png");
@@ -289,27 +338,31 @@ int main() {
 						stone7Sprite.setPosition(300, 200);
 						stone7Sprite.setScale(2, 2);
 
-						//end window
+						//closing window by sprite
 						sf::Texture end1Texture;
 						loadTexture(end1Texture, "endquest1.png");
 						sf::Sprite end1Sprite(end1Texture);
 						end1Sprite.setPosition(270, 130);
 
+						//quest 1 begin
 						while (subWindow.isOpen()) {
 
 
 							sf::Event subEvent;
+
 							while (subWindow.pollEvent(subEvent)) {
 								if (subEvent.type == sf::Event::Closed) {
 									subWindow.close();
 								}
+
 								if (subEvent.type == sf::Event::MouseButtonPressed) {
 									if (subEvent.mouseButton.button == sf::Mouse::Right) {
 										subHero.attack();
 									}
+
 									if (subEvent.mouseButton.button == sf::Mouse::Left) {
 										sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
-										if (end1Sprite.getGlobalBounds().contains(mousePosition)) {
+										if (end1Sprite.getGlobalBounds().contains(mousePosition) && end1 == true) {
 											subWindow.close();
 
 										}
@@ -510,121 +563,293 @@ int main() {
 							subWindow.display();
 						}
 					}
-				}
 
-				sf::Vector2f mousePosition = window.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
-				if (quest2Sprite.getGlobalBounds().contains(mousePosition)) {
 
-					sf::RenderWindow subWindow(sf::VideoMode(1100, 600), "Quest II Window");
-					Hero subHero(10);
-					setupHero(subHero, animation_fps);
-					sf::FloatRect windowBounds(0, 0, subWindow.getSize().x, subWindow.getSize().y);
+					//quest 2 opening by sprite
+					if (quest2Sprite.getGlobalBounds().contains(mousePosition)) {
 
-					sf::Texture end2Texture;
-					loadTexture(end2Texture, "endquest2.png");
-					sf::Sprite end2Sprite(end2Texture);
-					end2Sprite.setPosition(270, 130);
+						//quest 2 window
+						sf::RenderWindow subWindow(sf::VideoMode(1100, 600), "Quest II Window");
+						Hero subHero(10);
+						setupHero(subHero, animation_fps);
+						sf::FloatRect windowBounds(0, 0, subWindow.getSize().x, subWindow.getSize().y);
 
-					sf::RectangleShape hpBar;
-					hpBar.setSize(sf::Vector2f(201, 40));
-					hpBar.setFillColor(sf::Color::Green);
-					hpBar.setPosition(400, 20);
+						Enemy subEnemy(animation_fps);
+						setupEnemy(subEnemy, enemyTextures[3], "enemy4_Idle.png", 2, sf::Vector2f(800, 210), {
+							{0, 0, 128, 128},
+							{128, 0, 128, 128},
+							{256, 0, 128, 128},
+							{384, 0, 128, 128},
+							{512, 0, 128, 128}
+							});
 
-					sf::RectangleShape hpBarEnemy;
-					hpBarEnemy.setSize(sf::Vector2f(201, 40));
-					hpBarEnemy.setFillColor(sf::Color::Yellow);
-					hpBarEnemy.setPosition(850, 180);
+						subEnemy.setMovement(200, 100, 1);
+						subEnemy.startMovement(sf::Vector2f(800, 210));
 
-					sf::Texture Charge;
-					loadTexture(Charge, "Charge.png");
-					sf::Vector2u frameSize(64, 64);
-					int numFrames = 8;
-					std::vector<sf::IntRect> frames;
-					for (int i = 0; i < numFrames; ++i) {
-						sf::IntRect frame(i * frameSize.x, 0, frameSize.x, frameSize.y);
-						frames.push_back(frame);
-					}    
-					
+						sf::Clock subClock;
 
-					bool enemy_dead = false;
-					bool end2 = false;
-					while (subWindow.isOpen()) {
+						sf::Texture end2Texture;
+						loadTexture(end2Texture, "endquest2.png");
+						sf::Sprite end2Sprite(end2Texture);
+						end2Sprite.setPosition(270, 130);
+
+						sf::Texture fail2Texture;
+						loadTexture(fail2Texture, "failquest2.png");
+						sf::Sprite fail2Sprite(fail2Texture);
+						fail2Sprite.setPosition(270, 130);
 
 
 
-						sf::Event subEvent;
-						while (subWindow.pollEvent(subEvent)) {
-							if (subEvent.type == sf::Event::Closed) {
-								subWindow.close();
-							}
-							if (subEvent.type == sf::Event::MouseButtonPressed) {
-								if (subEvent.mouseButton.button == sf::Mouse::Right) {
-									subHero.attack();
+
+						bool enemy_dead = false;
+						bool end2 = false;
+						bool enemySpawn = true;
+						while (subWindow.isOpen()) {
+
+
+
+							sf::Event subEvent;
+							while (subWindow.pollEvent(subEvent)) {
+								if (subEvent.type == sf::Event::Closed) {
+									subWindow.close();
 								}
-								if (subEvent.mouseButton.button == sf::Mouse::Left) {
-									sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
-									if (end2Sprite.getGlobalBounds().contains(mousePosition)) {
-										subWindow.close();
+								if (subEvent.type == sf::Event::MouseButtonPressed) {
+									if (subEvent.mouseButton.button == sf::Mouse::Right) {
+										subHero.attack();
+									}
+									if (subEvent.mouseButton.button == sf::Mouse::Left) {
+										sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
+										if (end2Sprite.getGlobalBounds().contains(mousePosition)) {
+											subWindow.close();
 
+										}
+									}
+								}
+								sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
+
+								sf::FloatRect subHeroBounds = subHero.getGlobalBounds();
+								sf::FloatRect subEnemyBounds = subEnemy.getGlobalBounds();
+								if (subHeroBounds.intersects(subEnemyBounds) && subEvent.mouseButton.button == sf::Mouse::Right) {
+									healthBarEnemy.setFillColor(sf::Color::Red);
+									end2 = true;
+									quest3 = true;
+									quest2 = false;
+									enemySpawn = false;
+
+								}
+							}
+
+							float delta_time = subClock.restart().asSeconds();
+							float hero_speed = 0.1f;
+
+							sf::Vector2f movement = handleMovement(subHero, hero_speed);
+							sf::Vector2f hero_pos = subHero.getPosition();
+							sf::FloatRect hero_bounds = subHero.getGlobalBounds();
+
+							checkBounds(movement, hero_pos, windowBounds, hero_bounds);
+							subHero.move(movement);
+							subHero.update(delta_time);
+
+							subEnemy.update(delta_time);
+
+							if (projectileClock.getElapsedTime().asSeconds() >= fireInterval) {
+								sf::Vector2f enemy_center = subEnemy.getPosition() + sf::Vector2f(subEnemy.getGlobalBounds().width / 2, subEnemy.getGlobalBounds().height / 2);
+								projectiles.push_back(Projectile(projectileTexture, enemy_center, 300.0f));
+								projectileClock.restart();
+							}
+
+							for (auto it = projectiles.begin(); it != projectiles.end();) {
+								it->update(delta_time);
+
+								if (it->getGlobalBounds().intersects(hero_bounds)) {
+									std::cout << "hit" << std::endl;
+									subHero.decreaseHealth(20);
+									it = projectiles.erase(it);
+								}
+								else if (it->isOffScreen(windowBounds)) {
+									it = projectiles.erase(it);
+								}
+								else {
+									++it;
+								}
+							}
+
+							float healthPercent = static_cast<float>(subHero.getHealth()) / 100.0f;
+							healthBar.setSize(sf::Vector2f(200 * healthPercent, 20));
+
+							if (subHero.getHealth() <= 0) {
+								subWindow.clear();
+								subWindow.draw(fail2Sprite);
+								subWindow.display();
+
+								while (true) {
+									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+										subWindow.close();
+										break;
 									}
 								}
 							}
-							if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-								subHero.attack();
+							subWindow.clear();
+							subWindow.draw(map);
+							subWindow.draw(healthBarEnemyBackground);
+							subWindow.draw(healthBarEnemy);
+							subWindow.draw(healthBarBackground);
+							subWindow.draw(healthBar);
+							subWindow.draw(subHero);
+							subWindow.draw(subEnemy);
+							if (enemySpawn) {
+								for (const auto& projectile : projectiles) {
+								subWindow.draw(projectile);
 							}
-							sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
-							if (subHero.getPosition().x >= 800 && subHero.getPosition().x <= 1020 && subHero.getPosition().y >= 250 && subHero.getPosition().y <= 450 && subEvent.mouseButton.button == sf::Mouse::Right) {
-								enemy_dead = true;
-								hpBarEnemy.setFillColor(sf::Color::Red);
-								end2 = true;
 							}
+							
+
+							
+							if (end2)
+							{
+								subWindow.draw(end2Sprite);
+							}
+
+							subWindow.display();
 						}
 
-						int currentFrame = 0;
-						float frameTime = 0.1f;
-						float elapsedTime = 0.0f;
-						if (elapsedTime >= frameTime) {
-							elapsedTime -= frameTime;
-							currentFrame = (currentFrame + 1) % numFrames;
-						}
-						sf::IntRect frameToDisplay = frames[currentFrame];
-						sf::Sprite sprite(Charge, frameToDisplay);
 
-						float delta_time = clock.restart().asSeconds();
-						float hero_speed = 0.2;
-
-						sf::Vector2f movement = handleMovement(subHero, hero_speed);
-						sf::Vector2f hero_pos = subHero.getPosition();
-						sf::FloatRect hero_bounds = subHero.getGlobalBounds();
-
-						checkBounds(movement, hero_pos, windowBounds, hero_bounds);
-						subHero.move(movement);
-						subHero.update(delta_time);
-						
-
-						for (Enemy& enemy : enemies) {
-							enemy.update(delta_time);
-						
-						}
-						subWindow.clear();
-						subWindow.draw(map);
-						subWindow.draw(hpBar);
-						subWindow.draw(sprite);
-						subWindow.draw(hpBarEnemy);
-						subWindow.draw(subHero);
-						if(enemy_dead==false)
-						{
-							subWindow.draw(enemies[3]);}
-						
-						if (end2) 
-						{
-							subWindow.draw(end2Sprite);
-						}
-						
-						subWindow.display();
 					}
 
+					//quest 3 opening by sprite
+					if (quest3Sprite.getGlobalBounds().contains(mousePosition)) {
 
+						sf::RenderWindow subWindow(sf::VideoMode(1100, 600), "Quest III Window");
+						Hero subHero(10);
+						setupHero(subHero, animation_fps);
+						sf::FloatRect windowBounds(0, 0, subWindow.getSize().x, subWindow.getSize().y);
+
+						sf::Texture end3Texture;
+						loadTexture(end3Texture, "endquest3.png");
+						sf::Sprite end3Sprite(end3Texture);
+						end3Sprite.setPosition(270, 130);
+
+						sf::Texture stone5Texture; 
+						loadTexture(stone5Texture, "stone.png");
+						sf::Sprite stone5Sprite(stone5Texture); 
+						stone5Sprite.setPosition(620, 450);
+						stone5Sprite.setScale(4, 4);
+
+						sf::Texture bulletTexture;
+						loadTexture(bulletTexture, "projectile.png");
+
+						std::vector<Bullet> bullets;
+						const float bulletSpeed = 2.0f;
+
+						bool end3 = false;
+						float bulletSpawnTimer = 0.0f;
+						float delta_time = clock.restart().asSeconds();
+						bool gotPrize = false;
+						bool heroFailed = false;
+						//quest 3 window
+						while (subWindow.isOpen()) {
+
+							if (bulletSpawnTimer - (bulletSpawnTimer / 20.0f) * 20.0f <= 0.0f && bullets.size() < 10) {
+
+
+								sf::Vector2f bulletDirection = getRandomPosition(-1.0f, 1.0f);
+								sf::Vector2f bulletPos = getRandomPosition(0.0f, 1000.0f);
+
+								bullets.emplace_back(bulletTexture, bulletPos, bulletDirection, bulletSpeed);
+							}
+
+							bulletSpawnTimer += 0.05f;
+
+							sf::Event subEvent;
+							while (subWindow.pollEvent(subEvent)) {
+								if (subEvent.type == sf::Event::Closed) {
+									subWindow.close();
+								}
+
+								if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+									subWindow.close();
+									break;
+								}
+								if (subEvent.type == sf::Event::MouseButtonPressed) {
+									if (subEvent.mouseButton.button == sf::Mouse::Right) {
+										subHero.attack();
+									}
+									if (subEvent.mouseButton.button == sf::Mouse::Left) {
+										sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
+										if (end3Sprite.getGlobalBounds().contains(mousePosition) && end3 == true) {
+											subWindow.close();
+
+										}
+									}
+									
+									}
+								if (subHero.getPosition().x >= 550 && subHero.getPosition().x <= 570 && subHero.getPosition().y >= 320 && subHero.getPosition().y <= 340) {
+
+										if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+											gotPrize = false;
+											end3 = true;
+											quest3 = false; 
+											_endgame = true; 
+										}
+								}
+
+								sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
+								
+							}
+
+
+
+
+							float hero_speed = 0.2;
+
+							sf::Vector2f movement = handleMovement(subHero, hero_speed);
+							sf::Vector2f hero_pos = subHero.getPosition();
+							sf::FloatRect hero_bounds = subHero.getGlobalBounds();
+
+							checkBounds(movement, hero_pos, windowBounds, hero_bounds);
+							subHero.move(movement);
+							subHero.update(delta_time);
+
+							for (auto& bullet : bullets) {
+								bullet.update(delta_time);
+								
+								if (bullet.getBounds().intersects(subHero.getGlobalBounds())) {
+									heroFailed = true; 
+								}
+							} 
+
+							bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [&windowBounds](const Bullet& bullet) {
+								return !windowBounds.intersects(bullet.getBounds());
+								}), bullets.end());
+
+							for (Enemy& enemy : enemies) {
+								enemy.update(delta_time);
+
+							}
+							sf::Texture fail2Texture;
+							loadTexture(fail2Texture, "failquest2.png");
+							sf::Sprite fail2Sprite(fail2Texture);
+							fail2Sprite.setPosition(270, 130);
+
+							subWindow.clear();
+							subWindow.draw(map);
+							for (const auto& bullet : bullets) {
+								bullet.draw(subWindow);
+							}
+							subWindow.draw(stone5Sprite);
+							subWindow.draw(subHero);
+							if (heroFailed) {
+								subWindow.draw(fail2Sprite);
+							}
+
+							if (end3)
+							{
+								subWindow.draw(end3Sprite);
+							}
+
+							subWindow.display();
+						}
+					}
 				}
 			}
 		}
@@ -657,8 +882,14 @@ int main() {
 		if (quest2) {
 			window.draw(quest2Sprite);
 		}
+		if (quest3) {
+			window.draw(quest3Sprite);
+		}
 
 		window.draw(hero);
+		if (_endgame) {
+			window.draw(endgame);
+		}
 		window.display();
 	}
 

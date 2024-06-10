@@ -92,23 +92,18 @@ void Hero::update(float delta_time) {
         current_frame = (current_frame + 1) % current_frames->size();
         setTextureRect((*current_frames)[current_frame]);
         if (attacking && current_frame == current_frames->size() - 1) {
-            setAttacking(false); 
+            setAttacking(false);
         }
     }
-
-    hpBar.setSize(sf::Vector2f(100 * (hp / 100.0f), 10));
-    hpBar.setPosition(getPosition().x, getPosition().y - 20);
 }
 
-void Hero::decreaseHP(float amount) {
-    hp -= amount;
-    if (hp < 0) hp = 0;
+void Hero::decreaseHealth(int amount) {
+    health -= amount;
+    if (health < 0) {
+        health = 0;
+    }
 }
 
-float Hero::getHP() const {
-    return hp;
-}
-
-void Hero::drawHP(sf::RenderWindow& window) {
-    window.draw(hpBar);
+int Hero::getHealth() const {
+    return health;
 }
