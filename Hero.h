@@ -1,11 +1,8 @@
-// Hero.h
-#ifndef HERO_H
-#define HERO_H
-
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-class Hero : public sf::Sprite {
+
+class Hero : public Character {
 public:
 	Hero(int fps);
 	void setIdleTexture(const sf::Texture& texture);
@@ -19,20 +16,18 @@ public:
 	void setMoving(bool moving, bool movingLeft);
 	void update(float delta_time);
 	void setAttacking(bool isAttacking);
-	void attack();
+	void attack() override;
 	void decreaseHealth(int amount);
 	int getHealth() const;
 
 private:
-	sf::Texture idle_texture;
-	sf::Texture walk_texture_left;
-	sf::Texture walk_texture_right;
-	sf::Texture attackTexture;
+
 	std::vector<sf::IntRect> idle_frames;
 	std::vector<sf::IntRect> walk_frames_left;
 	std::vector<sf::IntRect> walk_frames_right;
 	std::vector<sf::IntRect> attack_frames;
-	std::vector<sf::IntRect> *current_frames;
+	std::vector<sf::IntRect>* current_frames;
+
 	int animation_fps;
 	int current_frame;
 	float time_per_frame;
@@ -42,5 +37,3 @@ private:
 	bool attacking;
 	int health = 100;
 };
-
-#endif // HERO_H

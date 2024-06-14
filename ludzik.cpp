@@ -2,9 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <random> 
-#include <thread>
-#include <chrono>
 #include "Enemy.h"
+#include "Character.h"
 #include "Hero.h"
 #include "Bullet.h"
 #include "Projectile.h"
@@ -32,15 +31,15 @@ void setupHero(Hero& hero, int fps) {
 	hero.setAttackTexture(attack_texture);
 
 	for (int i = 0; i < 5; ++i) {
-		hero.add_idle_frame(sf::IntRect(128 * i, 0, 128, 128));
+		hero.add_idle_frame(sf::IntRect(128 * i, 55, 128, 73));
 	}
 
 	for (int i = 0; i < 8; ++i) {
-		hero.add_walk_frame_left(sf::IntRect(128 * i, 0, 128, 128));
-		hero.add_walk_frame_right(sf::IntRect(128 * i, 0, 128, 128));
+		hero.add_walk_frame_left(sf::IntRect(128 * i, 55, 128, 73));
+		hero.add_walk_frame_right(sf::IntRect(128 * i, 55, 128, 73));
 	}
 	for (int i = 0; i < 6; ++i) {
-		hero.add_attack_frame(sf::IntRect(128 * i, 0, 128, 128));
+		hero.add_attack_frame(sf::IntRect(128 * i, 55, 128, 73));
 	}
 
 	hero.setPosition(250, 470);
@@ -147,6 +146,13 @@ int main() {
 	loadTexture(map1_texture, "mapka1.png");
 	sf::Sprite map1(map1_texture);
 	map1.setScale(1, 1);
+	
+	//quest 3 map
+	sf::Texture map3;
+	loadTexture(map3, "mapka3.png");
+	sf::Sprite map3Sprite(map3);
+	map3Sprite.setScale(0.5, 0.5);
+
 
 	//quest 1 
 	sf::Texture questTexture;
@@ -370,7 +376,7 @@ int main() {
 								}
 
 								//stone 1
-								if (subHero.getPosition().x >= 200 && subHero.getPosition().x <= 220 && subHero.getPosition().y >= 130 && subHero.getPosition().y <= 150 && check == true) {
+								if (subHero.getPosition().x >= 200 && subHero.getPosition().x <= 220 && subHero.getPosition().y >= 185 && subHero.getPosition().y <= 255 && check == true) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stoneVisible = false;
@@ -378,20 +384,22 @@ int main() {
 									}
 								}
 
-								if (subHero.getPosition().x >= 300 && subHero.getPosition().x <= 340 && subHero.getPosition().y >= 130 && subHero.getPosition().y <= 160 && check == false) {
+								if (subHero.getPosition().x >= 300 && subHero.getPosition().x <= 340 && subHero.getPosition().y >= 185 && subHero.getPosition().y <= 215 && check == false) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stoneSprite.setPosition(370, 250);
 										stoneSprite.setScale(3, 3);
+										if (stoneVisible == false) {
+											it++;
+										}
 										stoneVisible = true;
-										it++;
 										std::cout << it << std::endl;
 
 									}
 								}
 
 								//stone 2 - 130,150
-								if (subHero.getPosition().x >= 60 && subHero.getPosition().x <= 80 && subHero.getPosition().y >= 20 && subHero.getPosition().y <= 40 && check2 == true) {
+								if (subHero.getPosition().x >= 60 && subHero.getPosition().x <= 80 && subHero.getPosition().y >= 75 && subHero.getPosition().y <= 95&& check2 == true) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stoneVisible2 = false;
@@ -399,18 +407,20 @@ int main() {
 									}
 								}
 
-								if (subHero.getPosition().x >= 340 && subHero.getPosition().x <= 380 && subHero.getPosition().y >= 130 && subHero.getPosition().y <= 160 && check2 == false) {
+								if (subHero.getPosition().x >= 340 && subHero.getPosition().x <= 380 && subHero.getPosition().y >= 185 && subHero.getPosition().y <= 215 && check2 == false) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stone2Sprite.setPosition(410, 250);
 										stone2Sprite.setScale(3, 3);
+										if (stoneVisible2 == false) {
+											it++;
+										}
 										stoneVisible2 = true;
-										it++;
 										std::cout << it << std::endl;
 									}
 								}
 								//stone 3 - 330,350
-								if (subHero.getPosition().x >= 260 && subHero.getPosition().x <= 280 && subHero.getPosition().y >= 220 && subHero.getPosition().y <= 240 && check3 == true) {
+								if (subHero.getPosition().x >= 260 && subHero.getPosition().x <= 280 && subHero.getPosition().y >= 275 && subHero.getPosition().y <= 295 && check3 == true) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stoneVisible3 = false;
@@ -418,18 +428,20 @@ int main() {
 									}
 								}
 
-								if (subHero.getPosition().x >= 380 && subHero.getPosition().x <= 420 && subHero.getPosition().y >= 130 && subHero.getPosition().y <= 160 && check3 == false) {
+								if (subHero.getPosition().x >= 380 && subHero.getPosition().x <= 420 && subHero.getPosition().y >= 185 && subHero.getPosition().y <=215 && check3 == false) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stone3Sprite.setPosition(450, 250);
 										stone3Sprite.setScale(3, 3);
+										if (stoneVisible3 == false) {
+											it++;
+										}
 										stoneVisible3 = true;
-										it++;
 										std::cout << it << std::endl;
 									}
 								}
 								//stone 4 - 600,300
-								if (subHero.getPosition().x >= 530 && subHero.getPosition().x <= 550 && subHero.getPosition().y >= 170 && subHero.getPosition().y <= 190 && check4 == true) {
+								if (subHero.getPosition().x >= 530 && subHero.getPosition().x <= 550 && subHero.getPosition().y >= 225 && subHero.getPosition().y <= 245 && check4 == true) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stoneVisible4 = false;
@@ -437,18 +449,20 @@ int main() {
 									}
 								}
 
-								if (subHero.getPosition().x >= 340 && subHero.getPosition().x <= 380 && subHero.getPosition().y >= 170 && subHero.getPosition().y <= 200 && check4 == false) {
+								if (subHero.getPosition().x >= 340 && subHero.getPosition().x <= 380 && subHero.getPosition().y >= 225 && subHero.getPosition().y <= 255 && check4 == false) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stone4Sprite.setPosition(410, 290);
 										stone4Sprite.setScale(3, 3);
+										if (stoneVisible4 == false) {
+											it++;
+										}
 										stoneVisible4 = true;
-										it++;
 										std::cout << it << std::endl;
 									}
 								}
 								//stone 5 - 620,450
-								if (subHero.getPosition().x >= 550 && subHero.getPosition().x <= 570 && subHero.getPosition().y >= 320 && subHero.getPosition().y <= 340 && check5 == true) {
+								if (subHero.getPosition().x >= 550 && subHero.getPosition().x <= 570 && subHero.getPosition().y >= 375 && subHero.getPosition().y <= 395 && check5 == true) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stoneVisible5 = false;
@@ -456,18 +470,20 @@ int main() {
 									}
 								}
 
-								if (subHero.getPosition().x >= 340 && subHero.getPosition().x <= 380 && subHero.getPosition().y >= 210 && subHero.getPosition().y <= 240 && check5 == false) {
+								if (subHero.getPosition().x >= 340 && subHero.getPosition().x <= 380 && subHero.getPosition().y >= 265 && subHero.getPosition().y <= 295 && check5 == false) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stone5Sprite.setPosition(410, 330);
 										stone5Sprite.setScale(3, 3);
+										if (stoneVisible5 == false) {
+											it++;
+										}
 										stoneVisible5 = true;
-										it++;
 										std::cout << it << std::endl;
 									}
 								}
 								//stone 6 - 180,400
-								if (subHero.getPosition().x >= 110 && subHero.getPosition().x <= 130 && subHero.getPosition().y >= 270 && subHero.getPosition().y <= 290 && check6 == true) {
+								if (subHero.getPosition().x >= 110 && subHero.getPosition().x <= 130 && subHero.getPosition().y >= 325 && subHero.getPosition().y <=345 && check6 == true) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stoneVisible6 = false;
@@ -475,18 +491,20 @@ int main() {
 									}
 								}
 
-								if (subHero.getPosition().x >= 380 && subHero.getPosition().x <= 420 && subHero.getPosition().y >= 210 && subHero.getPosition().y <= 240 && check6 == false) {
+								if (subHero.getPosition().x >= 380 && subHero.getPosition().x <= 420 && subHero.getPosition().y >= 265 && subHero.getPosition().y <= 295 && check6 == false) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stone6Sprite.setPosition(450, 330);
 										stone6Sprite.setScale(3, 3);
+										if (stoneVisible6 == false) {
+											it++;
+										}
 										stoneVisible6 = true;
-										it++;
 										std::cout << it << std::endl;
 									}
 								}
 								//stone 7 - 300,200
-								if (subHero.getPosition().x >= 230 && subHero.getPosition().x <= 250 && subHero.getPosition().y >= 70 && subHero.getPosition().y <= 90 && check7 == true) {
+								if (subHero.getPosition().x >= 230 && subHero.getPosition().x <= 250 && subHero.getPosition().y >= 125 && subHero.getPosition().y <= 145 && check7 == true) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stoneVisible7 = false;
@@ -494,18 +512,20 @@ int main() {
 									}
 								}
 
-								if (subHero.getPosition().x >= 300 && subHero.getPosition().x <= 340 && subHero.getPosition().y >= 210 && subHero.getPosition().y <= 240 && check7 == false) {
+								if (subHero.getPosition().x >= 300 && subHero.getPosition().x <= 340 && subHero.getPosition().y >= 265 && subHero.getPosition().y <= 295 && check7 == false) {
 
 									if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 										stone7Sprite.setPosition(370, 330);
 										stone7Sprite.setScale(3, 3);
+										if (stoneVisible7 == false) {
+											it++;
+										}
 										stoneVisible7 = true;
-										it++;
 										std::cout << it << std::endl;
 									}
 								}
 
-								if (it == 14) {
+								if (it == 7) {
 									end1 = true;
 									quest2 = true;
 									quest1 = false;
@@ -514,7 +534,7 @@ int main() {
 							}
 
 							float delta_time = clock.restart().asSeconds();
-							float hero_speed = 0.02;
+							float hero_speed = 0.1;
 
 							sf::Vector2f movement = handleMovement(subHero, hero_speed);
 							sf::Vector2f hero_pos = subHero.getPosition();
@@ -556,6 +576,7 @@ int main() {
 								subWindow.draw(stone7Sprite);
 							}
 							subWindow.draw(subHero);
+
 							if (end1) {
 								subWindow.draw(end1Sprite);
 							}
@@ -598,15 +619,11 @@ int main() {
 						sf::Sprite fail2Sprite(fail2Texture);
 						fail2Sprite.setPosition(270, 130);
 
-
-
-
 						bool enemy_dead = false;
 						bool end2 = false;
 						bool enemySpawn = true;
+
 						while (subWindow.isOpen()) {
-
-
 
 							sf::Event subEvent;
 							while (subWindow.pollEvent(subEvent)) {
@@ -626,10 +643,10 @@ int main() {
 									}
 								}
 								sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
-
 								sf::FloatRect subHeroBounds = subHero.getGlobalBounds();
 								sf::FloatRect subEnemyBounds = subEnemy.getGlobalBounds();
-								if (subHeroBounds.intersects(subEnemyBounds) && subEvent.mouseButton.button == sf::Mouse::Right) {
+
+								if (subHero.getPosition().x >= 780 && subHero.getPosition().x <= 820 && subHeroBounds.intersects(subEnemyBounds) && subEvent.mouseButton.button == sf::Mouse::Right) {
 									healthBarEnemy.setFillColor(sf::Color::Red);
 									end2 = true;
 									quest3 = true;
@@ -640,7 +657,7 @@ int main() {
 							}
 
 							float delta_time = subClock.restart().asSeconds();
-							float hero_speed = 0.02f;
+							float hero_speed = 0.1;
 
 							sf::Vector2f movement = handleMovement(subHero, hero_speed);
 							sf::Vector2f hero_pos = subHero.getPosition();
@@ -662,7 +679,6 @@ int main() {
 								it->update(delta_time);
 
 								if (it->getGlobalBounds().intersects(hero_bounds)) {
-									std::cout << "hit" << std::endl;
 									subHero.decreaseHealth(20);
 									it = projectiles.erase(it);
 								}
@@ -696,21 +712,20 @@ int main() {
 							subWindow.draw(healthBarBackground);
 							subWindow.draw(healthBar);
 							subWindow.draw(subHero);
+							
+
 							subWindow.draw(subEnemy);
 							if (enemySpawn) {
 								for (const auto& projectile : projectiles) {
-								subWindow.draw(projectile);
+									subWindow.draw(projectile);
+								}
 							}
-							}
-							
-
-							
 							if (end2)
 							{
 								subWindow.draw(end2Sprite);
-							}
 
-							subWindow.display();
+							}
+							subWindow.display(); 
 						}
 
 
@@ -720,7 +735,7 @@ int main() {
 					if (quest3Sprite.getGlobalBounds().contains(mousePosition)) {
 
 						sf::RenderWindow subWindow(sf::VideoMode(1100, 600), "Quest III Window");
-						Hero subHero(10);
+						Hero subHero(1);
 						setupHero(subHero, animation_fps);
 						sf::FloatRect windowBounds(0, 0, subWindow.getSize().x, subWindow.getSize().y);
 
@@ -729,14 +744,9 @@ int main() {
 						sf::Sprite end3Sprite(end3Texture);
 						end3Sprite.setPosition(270, 130);
 
-						sf::Texture stone5Texture; 
-						loadTexture(stone5Texture, "stone.png");
-						sf::Sprite stone5Sprite(stone5Texture); 
-						stone5Sprite.setPosition(620, 450);
-						stone5Sprite.setScale(4, 4);
 
 						sf::Texture bulletTexture;
-						loadTexture(bulletTexture, "projectile.png");
+						loadTexture(bulletTexture, "coin.png");
 
 						std::vector<Bullet> bullets;
 						const float bulletSpeed = 2.0f;
@@ -744,8 +754,8 @@ int main() {
 						bool end3 = false;
 						float bulletSpawnTimer = 0.0f;
 						float delta_time = clock.restart().asSeconds();
-						bool gotPrize = false;
-						bool heroFailed = false;
+						int prize = 0;
+
 						//quest 3 window
 						while (subWindow.isOpen()) {
 
@@ -766,10 +776,6 @@ int main() {
 									subWindow.close();
 								}
 
-								if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-									subWindow.close();
-									break;
-								}
 								if (subEvent.type == sf::Event::MouseButtonPressed) {
 									if (subEvent.mouseButton.button == sf::Mouse::Right) {
 										subHero.attack();
@@ -781,27 +787,10 @@ int main() {
 
 										}
 									}
-									
-									}
-								if (subHero.getPosition().x >= 550 && subHero.getPosition().x <= 570 && subHero.getPosition().y >= 320 && subHero.getPosition().y <= 340) {
-
-										if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-											gotPrize = false;
-											end3 = true;
-											quest3 = false; 
-											_endgame = true; 
-										}
 								}
-
-								sf::Vector2f mousePosition = subWindow.mapPixelToCoords(sf::Vector2i(subEvent.mouseButton.x, subEvent.mouseButton.y));
-								
 							}
 
-
-
-
-							float hero_speed = 0.02f;
-
+							float hero_speed = 0.1;
 							sf::Vector2f movement = handleMovement(subHero, hero_speed);
 							sf::Vector2f hero_pos = subHero.getPosition();
 							sf::FloatRect hero_bounds = subHero.getGlobalBounds();
@@ -810,39 +799,38 @@ int main() {
 							subHero.move(movement);
 							subHero.update(delta_time);
 
-							for (auto& bullet : bullets) {
-								bullet.update(delta_time);
-								
-								if (bullet.getBounds().intersects(subHero.getGlobalBounds())) {
-									heroFailed = true; 
-								}
-							} 
+							for (auto it = bullets.begin(); it != bullets.end();) {
+								it->update(delta_time);
 
+								if (it->getBounds().intersects(subHero.getGlobalBounds())) {
+									prize++;
+									std::cout << "prize: " <<prize<< std::endl;
+									it = bullets.erase(it);
+									if (prize >= 10) {
+										end3 = true;
+										quest3 = false;
+										_endgame = true;
+									}
+								}
+								else {
+									++it;
+								}
+							}
 							bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [&windowBounds](const Bullet& bullet) {
 								return !windowBounds.intersects(bullet.getBounds());
 								}), bullets.end());
 
 							for (Enemy& enemy : enemies) {
 								enemy.update(delta_time);
-
 							}
-							sf::Texture fail2Texture;
-							loadTexture(fail2Texture, "failquest2.png");
-							sf::Sprite fail2Sprite(fail2Texture);
-							fail2Sprite.setPosition(270, 130);
 
 							subWindow.clear();
-							subWindow.draw(map);
+							subWindow.draw(map3Sprite);
 							for (const auto& bullet : bullets) {
 								bullet.draw(subWindow);
 							}
-							subWindow.draw(stone5Sprite);
 							subWindow.draw(subHero);
-							if (heroFailed) {
-								subWindow.draw(fail2Sprite);
-							}
-
-							if (end3)
+							if (end3 && prize >= 10)
 							{
 								subWindow.draw(end3Sprite);
 							}
@@ -855,8 +843,9 @@ int main() {
 		}
 
 
+
 		float delta_time = clock.restart().asSeconds();
-		float hero_speed = 0.02f;
+		float hero_speed = 0.1;
 
 		sf::Vector2f movement = handleMovement(hero, hero_speed);
 		sf::Vector2f hero_pos = hero.getPosition();
