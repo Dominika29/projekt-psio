@@ -14,7 +14,7 @@ Sterowanie:
 W grze bohaterem steruje się za pomocą przycisków strzałek oraz odpowiednio w questach:
 1- spacja jako podnoszenie i upuszczanie kamieni
 2-prawy przycisk myszy jako atak
-
+3- spacja jako podniesienie zwycięskiego grala - kamienia! uważaj żeby nie zderzyć się z ognikami!
 
 Struktura:
 Program posiada jedną główną pętlę oraz podział na klasy Hero i Enemy, dziedziczące po klasie Sprite. W głównej pętli programu 

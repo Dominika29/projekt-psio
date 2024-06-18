@@ -1,4 +1,4 @@
-// Hero.cpp
+#include"Character.h"
 #include "Hero.h"
 
 Hero::Hero(int fps) : animation_fps(fps), current_frame(0), elapsed_time(0.0f), is_moving(false), is_moving_left(false), attacking(false) {
@@ -7,31 +7,31 @@ Hero::Hero(int fps) : animation_fps(fps), current_frame(0), elapsed_time(0.0f), 
   
    
 }
-
 void Hero::setIdleTexture(const sf::Texture& texture) {
-    idle_texture = texture;
+    idle_texture = std::make_unique<sf::Texture>(texture);
     if (!is_moving && !attacking) {
-        setTexture(idle_texture);
+        setTexture(*idle_texture);
     }
 }
 
 void Hero::setWalkTextureLeft(const sf::Texture& texture) {
-    walk_texture_left = texture;
+    walk_texture_left = std::make_unique<sf::Texture>(texture);
     if (is_moving && is_moving_left) {
-        setTexture(walk_texture_left);
+        setTexture(*walk_texture_left);
     }
 }
 
 void Hero::setWalkTextureRight(const sf::Texture& texture) {
-    walk_texture_right = texture;
+    walk_texture_right = std::make_unique<sf::Texture>(texture);
     if (is_moving && !is_moving_left) {
-        setTexture(walk_texture_right);
+        setTexture(*walk_texture_right);
     }
 }
 
 void Hero::setAttackTexture(const sf::Texture& texture) {
-    attackTexture = texture;
+    attackTexture = std::make_unique<sf::Texture>(texture);
 }
+
 
 void Hero::add_idle_frame(const sf::IntRect& rect) {
     idle_frames.push_back(rect);
@@ -58,11 +58,11 @@ void Hero::setMoving(bool moving, bool movingLeft) {
         if (is_moving) {
             attacking = false;
             current_frames = is_moving_left ? &walk_frames_left : &walk_frames_right;
-            setTexture(is_moving_left ? walk_texture_left : walk_texture_right);
+            setTexture(is_moving_left ? *walk_texture_left : *walk_texture_right);
         }
         else {
             current_frames = &idle_frames;
-            setTexture(idle_texture);
+            setTexture(*idle_texture);
         }
     }
 }
@@ -74,7 +74,7 @@ void Hero::setAttacking(bool isAttacking) {
     elapsed_time = 0;
     if (attacking) {
         current_frames = &attack_frames;
-        setTexture(attackTexture);
+        setTexture(*attackTexture);
     }
 }
 
@@ -92,7 +92,7 @@ void Hero::update(float delta_time) {
         current_frame = (current_frame + 1) % current_frames->size();
         setTextureRect((*current_frames)[current_frame]);
         if (attacking && current_frame == current_frames->size() - 1) {
-            setAttacking(false); 
+            setAttacking(false);
         }
     }
 }

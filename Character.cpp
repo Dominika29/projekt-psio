@@ -1,0 +1,109 @@
+#include "Character.h"
+
+Character::Character(int fps) : animation_fps(fps), current_frame(0), elapsed_time(0.0f), is_moving(false), is_moving_left(false), attacking(false), health(100) {
+    time_per_frame = 1.0f / static_cast<float>(animation_fps);
+    current_frames = &idle_frames;
+}
+
+Character::Character() : Character(60) { }
+
+void Character::setIdleTexture(const sf::Texture& texture) {
+    idle_texture = std::make_unique<sf::Texture>(texture);
+    if (!is_moving && !attacking) {
+        setTexture(*idle_texture);
+    }
+}
+
+void Character::setWalkTextureLeft(const sf::Texture& texture) {
+    walk_texture_left = std::make_unique<sf::Texture>(texture);
+    if (is_moving && is_moving_left) {
+        setTexture(*walk_texture_left);
+    }
+}
+
+void Character::setWalkTextureRight(const sf::Texture& texture) {
+    walk_texture_right = std::make_unique<sf::Texture>(texture);
+    if (is_moving && !is_moving_left) {
+        setTexture(*walk_texture_right);
+    }
+}
+
+void Character::setAttackTexture(const sf::Texture& texture) {
+    attackTexture = std::make_unique<sf::Texture>(texture);
+}
+
+void Character::add_idle_frame(const sf::IntRect& rect) {
+    idle_frames.push_back(rect);
+}
+
+void Character::add_walk_frame_left(const sf::IntRect& rect) {
+    walk_frames_left.push_back(rect);
+}
+
+void Character::add_walk_frame_right(const sf::IntRect& rect) {
+    walk_frames_right.push_back(rect);
+}
+
+void Character::add_attack_frame(const sf::IntRect& rect) {
+    attack_frames.push_back(rect);
+}
+
+void Character::setMoving(bool moving, bool movingLeft) {
+    if (is_moving != moving || is_moving_left != movingLeft) {
+        is_moving = moving;
+        is_moving_left = movingLeft;
+        current_frame = 0;
+        elapsed_time = 0.0f;
+        if (is_moving) {
+            attacking = false;
+            current_frames = is_moving_left ? &walk_frames_left : &walk_frames_right;
+            setTexture(is_moving_left ? *walk_texture_left : *walk_texture_right);
+        }
+        else {
+            current_frames = &idle_frames;
+            setTexture(*idle_texture);
+        }
+    }
+}
+
+void Character::setAttacking(bool isAttacking) {
+    attacking = isAttacking;
+    is_moving = false;
+    current_frame = 0;
+    elapsed_time = 0;
+    if (attacking) {
+        current_frames = &attack_frames;
+        setTexture(*attackTexture);
+    }
+}
+
+void Character::attack() {
+    setAttacking(true);
+    dmg = 0;
+}
+
+void Character::update(float delta_time) {
+    if (current_frames->empty()) return;
+
+    elapsed_time += delta_time;
+
+    if (elapsed_time >= time_per_frame) {
+        elapsed_time -= time_per_frame;
+        current_frame = (current_frame + 1) % current_frames->size();
+        setTextureRect((*current_frames)[current_frame]);
+        if (attacking && current_frame == current_frames->size() - 1) {
+            setAttacking(false);
+        }
+    }
+}
+
+void Character::decreaseHealth(int amount) {
+    health -= amount;
+    if (health < 0) {
+        health = 0;
+    }
+}
+
+int Character::getHealth() const {
+    return health;
+}
